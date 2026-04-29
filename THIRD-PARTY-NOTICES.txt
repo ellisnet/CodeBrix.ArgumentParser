@@ -1,0 +1,191 @@
+THIRD-PARTY SOFTWARE NOTICES AND INFORMATION
+
+CodeBrix.ArgumentParser is a fully managed, cross-platform command-line
+option parser for .NET. It is a direct fork of the Mono.Options library,
+version 6.12.0.148, adapted to the CodeBrix family conventions. This file
+is intended to be a single, authoritative source for every third-party
+copyright, license, and provenance notice that applies to source code
+(and any other non-source assets) that has been incorporated into this
+repository from other open-source projects.
+
+NuGet package dependencies consumed at build time or test time — for
+example xUnit, SilverAssertions, coverlet.collector, Microsoft.NET.Test.Sdk —
+are NOT covered by this file. Each such package ships with its own
+license and its own third-party notices; this repository does not
+redistribute any of their source code.
+
+Every .cs source file in this repository that was derived from an
+external project carries the original upstream copyright header verbatim
+at the top of the file, and its `namespace` declaration line is
+annotated with `//was previously: <upstream.namespace>;` so the
+provenance of each file is unambiguous.
+
+Jeremy Ellis and contributors license the CodeBrix.ArgumentParser project
+to you under the terms set forth in the LICENSE file, which is located
+at the root of this repository.
+
+If you have any questions about any third-party code referenced here, or
+if you believe that any third-party code has been included in
+CodeBrix.ArgumentParser in error, please open a new issue at:
+https://github.com/ellisnet/CodeBrix.ArgumentParser/issues
+
+================================================================================
+
+1. Mono.Options 6.12.0.148
+
+   Project URL:       https://github.com/mono/mono/tree/mono-6.12.0.148/mcs/class/Mono.Options
+   Upstream tag:      mono-6.12.0.148
+   Upstream commit:   8b6809243db21a9ab3e2c21570958ab9c537ce29
+   Upstream authors:  Jonathan Pryor <jpryor@novell.com>, <Jonathan.Pryor@microsoft.com>
+                      Federico Di Gregorio <fog@initd.org>
+                      Rolf Bjarne Kvinge <rolf@xamarin.com>
+   Copyright:         Copyright (C) 2008 Novell (http://www.novell.com)
+                      Copyright (C) 2009 Federico Di Gregorio.
+                      Copyright (C) 2012 Xamarin Inc (http://www.xamarin.com)
+                      Copyright (C) 2017 Microsoft Corporation (http://www.microsoft.com)
+   License:           MIT / X11-style (full text reproduced below in 1.4)
+
+   Provenance chain:  Mono.Options was itself derived from the earlier
+                      "NDesk.Options" project, also primarily authored by
+                      Jonathan Pryor. Upstream Options.cs retains
+                      `#if NDESK_OPTIONS` branches documenting this
+                      heritage. All named copyright holders above cover
+                      the full history; no separate NDesk.Options
+                      attribution is required.
+
+
+1.1  Production source files derived from Mono.Options
+
+     Every file in this list was extracted, reorganised, and adapted from
+     the single upstream file
+     `mcs/class/Mono.Options/Mono.Options/Options.cs`. Upstream Mono.Options
+     ships as one monolithic .cs file; the CodeBrix port splits it across
+     multiple files organised by sub-folder / sub-namespace per the
+     CodeBrix family conventions.
+
+       src/CodeBrix.ArgumentParser/OptionSet.cs
+       src/CodeBrix.ArgumentParser/OptionException.cs
+       src/CodeBrix.ArgumentParser/OptionAction.cs
+       src/CodeBrix.ArgumentParser/Options/Option.cs
+       src/CodeBrix.ArgumentParser/Options/OptionContext.cs
+       src/CodeBrix.ArgumentParser/Options/OptionValueCollection.cs
+       src/CodeBrix.ArgumentParser/Options/OptionValueType.cs
+       src/CodeBrix.ArgumentParser/ArgumentSources/ArgumentSource.cs
+       src/CodeBrix.ArgumentParser/ArgumentSources/ResponseFileSource.cs
+       src/CodeBrix.ArgumentParser/Commands/Command.cs
+       src/CodeBrix.ArgumentParser/Commands/CommandSet.cs
+       src/CodeBrix.ArgumentParser/Commands/HelpCommand.cs
+       src/CodeBrix.ArgumentParser/Commands/CommandOption.cs
+       src/CodeBrix.ArgumentParser/Commands/HelpOption.cs
+       src/CodeBrix.ArgumentParser/Commands/CommandOptionSet.cs
+       src/CodeBrix.ArgumentParser/Internal/StringCoda.cs
+
+     The documentation-comment block near the top of OptionSet.cs also
+     contains prose (grammar specification, usage examples) derived
+     verbatim from the upstream file's leading `//` comments.
+
+
+1.2  Test source files derived from Mono.Options
+
+     Every file in this list was derived from the corresponding upstream
+     test file under `mcs/class/Mono.Options/Test/Mono.Options/`. Test
+     framework was migrated from NUnit to xUnit v3 + SilverAssertions;
+     assertion style was converted from NUnit `Assert.*` to fluent
+     `.Should()` calls; method naming was converted to the CodeBrix family
+     snake_case conventions; and NUnit-specific infrastructure files
+     (BaseRocksFixture.cs, CollectionContract.cs, ListContract.cs,
+     Utils.cs) from the upstream Test folder were not ported — their role
+     is filled by xUnit + SilverAssertions.
+
+       tests/CodeBrix.ArgumentParser.Tests/TestDefaultOption.cs
+           derived from the inline `DefaultOption` test helper class at
+           the top of upstream `Test/Mono.Options/OptionTest.cs`
+
+       tests/CodeBrix.ArgumentParser.Tests/OptionTests.cs
+           derived from `Test/Mono.Options/OptionTest.cs`
+
+       tests/CodeBrix.ArgumentParser.Tests/OptionContextTests.cs
+           derived from `Test/Mono.Options/OptionContextTest.cs`
+
+       tests/CodeBrix.ArgumentParser.Tests/OptionSetTests.cs
+           derived from `Test/Mono.Options/OptionSetTest.cs`
+
+       tests/CodeBrix.ArgumentParser.Tests/CommandTests.cs
+           derived from `Test/Mono.Options/CommandTest.cs`
+
+       tests/CodeBrix.ArgumentParser.Tests/CommandSetTests.cs
+           derived from `Test/Mono.Options/CommandSetTest.cs`
+
+     Upstream test files carry the same MIT/X11 license as the production
+     source; the copyright and author notices are reproduced in each
+     ported test file's header.
+
+
+1.3  Notable modifications during port
+
+     For transparency, the following material changes were made during
+     the port from upstream Mono.Options 6.12.0.148 to
+     CodeBrix.ArgumentParser:
+
+       * Conditional-compilation branches removed. The upstream source
+         contained `#if PCL`, `#if !PCL`, `#if LINQ`, `#if NDESK_OPTIONS`,
+         `#if TEST`, `#if NETSTANDARD1_3`, and `#if !PCL || NETSTANDARD1_3`
+         blocks. Only the .NET-10-relevant branches were kept.
+
+       * `[Serializable]` + `ISerializable` + `SecurityPermission`
+         scaffolding on `OptionException` was dropped, because .NET binary
+         serialization was deprecated in .NET 8+.
+
+       * The root namespace was changed from `Mono.Options` to
+         `CodeBrix.ArgumentParser` (with sub-namespaces under that root).
+
+       * Source organisation changed from one monolithic Options.cs file
+         to a sub-folder / sub-namespace layout (see 1.1 above).
+
+       * Nullable-reference-type annotations (`string?`, etc.) and the
+         null-forgiveness `!` operator were not introduced, per the
+         CodeBrix family convention of NRT-off codebases.
+
+       * XML doc comments were added to every public (and unsealed-
+         protected) member to satisfy `<GenerateDocumentationFile>`.
+
+       * Tests that asserted on exact .NET Framework BCL exception-message
+         strings (e.g. `"Parameter name: prototype"`) were either rewritten
+         to assert on exception type only, or omitted, because modern .NET
+         BCL formats those messages differently.
+
+
+1.4  Full upstream license text
+
+     Reproduced verbatim from the top of the upstream
+     `mcs/class/Mono.Options/Mono.Options/Options.cs`:
+
+     ------------------------------------------------------------------------
+     Copyright (C) 2008 Novell (http://www.novell.com)
+     Copyright (C) 2009 Federico Di Gregorio.
+     Copyright (C) 2012 Xamarin Inc (http://www.xamarin.com)
+     Copyright (C) 2017 Microsoft Corporation (http://www.microsoft.com)
+
+     Permission is hereby granted, free of charge, to any person obtaining
+     a copy of this software and associated documentation files (the
+     "Software"), to deal in the Software without restriction, including
+     without limitation the rights to use, copy, modify, merge, publish,
+     distribute, sublicense, and/or sell copies of the Software, and to
+     permit persons to whom the Software is furnished to do so, subject to
+     the following conditions:
+
+     The above copyright notice and this permission notice shall be
+     included in all copies or substantial portions of the Software.
+
+     THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+     EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+     MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+     NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
+     LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
+     OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
+     WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+     ------------------------------------------------------------------------
+
+================================================================================
+
+END OF THIRD-PARTY SOFTWARE NOTICES AND INFORMATION

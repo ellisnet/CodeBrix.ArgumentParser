@@ -1,0 +1,37 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <AssemblyName>CodeBrix.ArgumentParser</AssemblyName>
+    <RootNamespace>CodeBrix.ArgumentParser</RootNamespace>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <PackageId>CodeBrix.ArgumentParser.MitLicenseForever</PackageId>
+    <Version>1.0.117</Version>
+    <Product>CodeBrix.ArgumentParser</Product>
+    <Title>CodeBrix.ArgumentParser</Title>
+    <Authors>Jeremy Ellis</Authors>
+    <Description>A fully managed, cross-platform command-line option parser for .NET, forked from Mono.Options 6.12.0.148. Supports Getopt::Long-style options, typed callbacks, multi-value options, option bundling, response files, and a Command/CommandSet model for building git-style CLI suites.</Description>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageProjectUrl>https://github.com/ellisnet/CodeBrix.ArgumentParser</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/ellisnet/CodeBrix.ArgumentParser</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <PackageIcon>icon-codebrix-128.png</PackageIcon>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <Copyright>Copyright (c) 2026 Jeremy Ellis and contributors</Copyright>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+    <IsPackable>true</IsPackable>
+    <PackageTags>command-line;argument-parsing;options;cli;getopt;mono-options-fork;CodeBrix</PackageTags>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="..\..\icon-codebrix-128.png" Pack="true" PackagePath="" />
+    <None Include="..\..\README.md" Pack="true" PackagePath="" />
+    <None Include="..\..\AGENT-README.txt" Pack="true" PackagePath="" />
+    <None Include="..\..\THIRD-PARTY-NOTICES.txt" Pack="true" PackagePath="" />
+  </ItemGroup>
+
+</Project>
