@@ -31,8 +31,8 @@ What it supports:
   * Pluggable message localization for every user-facing string.
   * 80-column help rendering with option categories and hidden options.
 
-Provenance: this library is a port of Mono.Options 6.12.0.148, MIT-licensed,
-with the namespaces re-rooted under `CodeBrix.ArgumentParser`. Do not write
+Provenance: this library is a port of Mono.Options, MIT-licensed, with the
+namespaces re-rooted under `CodeBrix.ArgumentParser`. Do not write
 `using Mono.Options;` -- that namespace does not exist in this package, and the
 types are split across four namespaces (see KEY NAMESPACES / USINGS below).
 Behaviour is otherwise compatible with the upstream project, with added

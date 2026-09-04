@@ -54,7 +54,7 @@
     <Product>CodeBrix.ArgumentParser</Product>
     <Title>CodeBrix.ArgumentParser</Title>
     <Authors>Jeremy Ellis</Authors>
-    <Description>A fully managed, cross-platform command-line option parser for .NET, forked from Mono.Options 6.12.0.148. Supports Getopt::Long-style options, typed callbacks, multi-value options, option bundling, response files, and a Command/CommandSet model for building git-style CLI suites.</Description>
+    <Description>A fully managed, cross-platform command-line option parser for .NET. Supports Getopt::Long-style options, typed callbacks, multi-value options, option bundling, response files, and a Command/CommandSet model for building git-style CLI suites.</Description>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageProjectUrl>https://github.com/ellisnet/CodeBrix.ArgumentParser</PackageProjectUrl>
     <RepositoryUrl>https://github.com/ellisnet/CodeBrix.ArgumentParser</RepositoryUrl>
@@ -65,7 +65,7 @@
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
     <IsPackable>true</IsPackable>
-    <PackageTags>command-line;argument-parsing;options;cli;getopt;mono-options-fork;CodeBrix</PackageTags>
+    <PackageTags>command-line;argument-parsing;options;cli;getopt;CodeBrix</PackageTags>
   </PropertyGroup>
 
   <ItemGroup>

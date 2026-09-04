@@ -9,7 +9,7 @@ copyright, license, and provenance notice that applies to source code
 repository from other open-source projects.
 
 NuGet package dependencies consumed at build time or test time — for
-example xUnit, SilverAssertions, coverlet.collector, Microsoft.NET.Test.Sdk —
+example xUnit, SilverAssertions, Microsoft.NET.Test.Sdk —
 are NOT covered by this file. Each such package ships with its own
 license and its own third-party notices; this repository does not
 redistribute any of their source code.

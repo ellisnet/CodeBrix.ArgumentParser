@@ -24,7 +24,18 @@ AGENT-README files.
 REPOSITORY LAYOUT
 =================
 
-  CodeBrix.ArgumentParser.slnx        solution (Solution Items + Tests folders)
+  CodeBrix.ArgumentParser.slnx        solution. The "Solution Items" folder
+                                      carries .gitignore, AGENT-README.txt,
+                                      EXTRAS-README.txt, global.json,
+                                      icon-codebrix-128.png, LICENSE,
+                                      MAINTAINER-README.txt, README-INDEX.txt,
+                                      README.md and THIRD-PARTY-NOTICES.txt;
+                                      the "Tests" folder carries the test
+                                      project
+  global.json                         selects the Microsoft.Testing.Platform
+                                      test runner; does NOT pin an SDK
+                                      version -- see TESTING below
+  .gitignore                          git exclusions for this repository
   AGENT-README.txt                    consumer documentation; SHIPS in the
                                       nupkg
   MAINTAINER-README.txt               this file
@@ -109,9 +120,15 @@ TESTING
 
   dotnet test CodeBrix.ArgumentParser.slnx
 
+The test runner is Microsoft.Testing.Platform, selected by `global.json` at
+the repository root (`{ "test": { "runner": "Microsoft.Testing.Platform" } }`).
+That file pins no SDK version, so the newest installed .NET 10 SDK is still
+used; keep it committed, because without it `dotnet test` falls back to the
+older VSTest bridge.
+
 Roughly 100 tests across seven test classes; xUnit v3 with
-`xunit.runner.visualstudio`, `Microsoft.NET.Test.Sdk`, `coverlet.collector`
-and SilverAssertions (fluent `.Should()` form). Test naming is
+`xunit.runner.visualstudio`, `Microsoft.NET.Test.Sdk` and SilverAssertions
+(fluent `.Should()` form). Test naming is
 `<Class>Tests.cs` with snake_case method names describing the behaviour, and
 bodies carry `//Arrange`, `//Act`, `//Assert` comments.
 
