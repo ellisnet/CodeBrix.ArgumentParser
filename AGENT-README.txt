@@ -373,7 +373,8 @@ optional; a `Command` with neither is legal and does nothing. Override
 A null or empty `name` throws `ArgumentNullException`. Runs of whitespace in
 the name collapse to single spaces, so `new Command("foo  bar")` has
 `Name == "foo bar"` -- multi-word command names are supported and are matched
-greedily by `CommandSet`.
+shortest-first by `CommandSet` (the first registered name built from the
+leading words wins).
 
 CommandSet
 ----------
@@ -430,7 +431,7 @@ the set `Run` parses before it picks a command.
   2. Parses `args` with the suite-level option set.
   3. With nothing left over: prints "Use `<suite> help` for usage." to `Out`
      and returns `1` (or shows help and returns `0` if `--help` was given).
-  4. Otherwise resolves the leading argument(s) to a command -- longest match
+  4. Otherwise resolves the leading argument(s) to a command -- shortest match
      wins, and nested suites are searched too -- and returns that command's
      `Invoke` result. `Command.Invoke` returns `0` by default.
   5. An unrecognized command writes "Unknown command" plus a usage hint to
